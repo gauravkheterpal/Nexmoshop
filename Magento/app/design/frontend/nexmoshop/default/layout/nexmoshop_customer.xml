@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout>
+    <customer_account_edit>
+        <reference name="customer_edit">
+            <action method="setTemplate">
+                <template>nexmoshop_customer/form/edit.phtml</template>
+            </action>
+        </reference>
+    </customer_account_edit>
+    <customer_account_create>
+        <reference name="customer_form_register">
+            <action method="setTemplate">
+                <template>nexmoshop_customer/register.phtml</template>
+            </action>
+        </reference>
+        <referenceContainer name="head">
+    <block class="Magento\Theme\Block\Html\Head\Css" name="css-name">
+        <arguments>
+            <argument name="file" xsi:type="string">css/styles.css</argument>
+        </arguments>
+    </block>
+</referenceContainer>
+    </customer_account_create>
+</layout>
+
