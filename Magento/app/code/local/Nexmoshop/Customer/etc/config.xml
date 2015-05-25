@@ -5,6 +5,17 @@
             <version>1.0.0</version>
         </Nexmoshop_Customer>
     </modules>
+    <admin>
+        <routers>
+            <nexmoshop_customer>
+                <use>admin</use>
+                <args>
+                    <module>Nexmoshop_Customer</module>
+                    <frontName>nexmoshop</frontName>
+                </args>
+            </nexmoshop_customer>
+        </routers>
+    </admin>
     <global>
         <helpers>
             <nexmoshop_customer>
@@ -15,11 +26,33 @@
             <nexmoshop_customer_setup>
                 <setup>
                     <module>Nexmoshop_Customer</module>
-                    <class>Mage_Customer_Model_Resource_Setup</class>
+                    <class>Mage_Customer_Model_Resource_Mysql4_Setup</class>
+                    <class>Mage_Customer_Model_Entity_Setup</class>
                 </setup>
             </nexmoshop_customer_setup>
         </resources>
     </global>
+    <admin>
+    <routers>
+      <nexmoshop_customer>
+        <use>admin</use>
+        <args>
+          <module>Nexmoshop_Customer</module>
+          <frontName>admin_customer</frontName>
+        </args>
+      </nexmoshop_customer>
+    </routers>
+  </admin>
+  <adminhtml>
+    
+    <layout>
+      <updates>
+        <nexmoshop_customer>
+          <file>nexmoshop_customer.xml</file>
+        </nexmoshop_customer>
+      </updates>
+    </layout>
+  </adminhtml>
     <frontend>
         <layout>
             <updates>

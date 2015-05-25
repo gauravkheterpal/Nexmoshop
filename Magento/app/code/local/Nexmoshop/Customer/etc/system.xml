@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config>
+	  <tabs>
+		<nexmoshop_config_code1 translate="label" module="customer">
+            <label>Nexmoshop Configuration</label>
+            <sort_order>0</sort_order>
+        </nexmoshop_config_code1>
+	  </tabs>
+	  <sections>
+		<nexmoshop_section_code1  translate="label" module="customer">                    
+		<label>Nexmoshop Section</label>
+		<tab>nexmoshop_config_code1</tab>
+		<frontend_type>text</frontend_type>
+		<sort_order>0</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>0</show_in_store>            
+					<groups>
+				      <nexmoshop_group_code1 translate="label"> 
+					  <label>Nexmoshop Group</label>
+					  <frontend_type>text</frontend_type>
+					  <sort_order>0</sort_order>
+					  <show_in_default>1</show_in_default>
+					  <show_in_website>1</show_in_website>
+					  <show_in_store>0</show_in_store>
+				       <fields>
+                          <nexmoshop_field_api_key translate="label">
+                            <label>API Key</label>
+							<frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            
+							<comment>api key</comment>
+                          </nexmoshop_field_api_key>
+                          <nexmoshop_field_secret_key translate="label">
+                            <label>Secret Key</label>
+							<frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                             
+							<comment>secret key</comment>
+                          </nexmoshop_field_secret_key>
+					   </fields>
+					   </nexmoshop_group_code1>
+					</groups>
+		</nexmoshop_section_code1>
+	  </sections>
+</config>

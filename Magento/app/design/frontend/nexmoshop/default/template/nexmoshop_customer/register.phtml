@@ -32,6 +32,9 @@
  * @var $this Mage_Customer_Block_Form_Register
  */
 session_start();
+$api= Mage::getStoreConfig('nexmoshop_section_code1/nexmoshop_group_code1/nexmoshop_field_api_key');
+$secret = Mage::getStoreConfig('nexmoshop_section_code1/nexmoshop_group_code1/nexmoshop_field_secret_key');
+
 ?>
 <div class="account-create">
     <div class="page-title">
@@ -60,11 +63,13 @@ session_start();
                         <input type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
                     </div>
                 </li>
-                    <li>
-                    <label for="telephone" class="required"><em>*</em><?php echo $this->__('Mobile') ?></label>
-                        <div class="input-box">
-                            <input type="text" name="telephone" id="telephone"  title="<?php echo $this->__('Mobile') ?>"  class="input-text validate-custommobile"  />
-                        </div>
+                    <!-- Mobile Custom Customer Attribute -->
+                <li>
+                    <label for="mobile" class="required"><em>*</em><?php echo $this->__('Mobile Number') ?></label>
+                    <div class="input-box">
+                        <input type="text" autocapitalize="off" autocorrect="off" spellcheck="false" name="mobile" id="mobile" value="<?php echo $this->escapeHtml($this->getFormData()->getMobile()) ?>" title="<?php echo $this->__('Mobile Number') ?>" class="input-text validate-custommobile" />
+                    </div>
+                 
                 </li>
                 <?php if ($this->isNewsletterEnabled()): ?>
                 <li class="control">
@@ -247,7 +252,7 @@ if(Validation) {
 
         if(dataform.validator.validate()){
 
-            var textboxvalue = jQuery('input[name=telephone]').val();
+            var textboxvalue = jQuery('input[name=mobile]').val();
 var sess=jQuery('input[name=sesscode]').val();
             jQuery.ajax(
             {
@@ -262,40 +267,44 @@ var sess=jQuery('input[name=sesscode]').val();
           
 
 
-
             <?php
+
             //-------------------------------Nexmoshop--------------------------------
             if(isset($_POST) && isset($_POST['txt1']))
             {
-                $telephone= $_POST['txt1'];
-//$code = rand(1000, 9999); // random 4 digit code
-   //$_SESSION['code']=$code ; // store code for later
-$nexmocode=$_POST['sess1'];
-                    define('NEXMO_KEY',    '583ea851');
-                    define('NEXMO_SECRET', '76f7febe');
-                    define('NEXMO_FROM',   'nexmoshop');
+                    
+                        $telephone= $_POST['txt1'];
 
-                    defined('NEXMO_KEY')    || (getenv('NEXMO_KEY')    AND define('NEXMO_KEY', getenv('NEXMO_KEY')));
-                    defined('NEXMO_SECRET') || (getenv('NEXMO_SECRET') AND define('NEXMO_SECRET', getenv('NEXMO_SECRET')));
-                    defined('NEXMO_FROM')   || (getenv('NEXMO_FROM')   AND define('NEXMO_FROM', getenv('NEXMO_FROM')));
+                        $nexmocode=$_POST['sess1'];
 
-                $url = 'https://rest.nexmo.com/sms/json?' . http_build_query(array(
-                        'api_key' => NEXMO_KEY,
-                        'api_secret' => NEXMO_SECRET,
-                        'from' => NEXMO_FROM,
-                         'to' => $telephone,
-                        'text' => 'Your verification code is: ' . $nexmocode
-                        ));
 
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_DNS_USE_GLOBAL_CACHE, false);
-                curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 2);
-                $result = curl_exec($ch);
-                curl_close($ch);
-                $data = json_decode($result, true);
-   
+                            define('NEXMO_KEY',    $api);
+                            define('NEXMO_SECRET', $secret);
+                            define('NEXMO_FROM',   'nexmoshop');
+
+                            defined('NEXMO_KEY')    || (getenv('NEXMO_KEY')    AND define('NEXMO_KEY', getenv('NEXMO_KEY')));
+                            defined('NEXMO_SECRET') || (getenv('NEXMO_SECRET') AND define('NEXMO_SECRET', getenv('NEXMO_SECRET')));
+                            defined('NEXMO_FROM')   || (getenv('NEXMO_FROM')   AND define('NEXMO_FROM', getenv('NEXMO_FROM')));
+
+
+
+                            $url = 'https://rest.nexmo.com/sms/json?' . http_build_query(array(
+                                    'api_key' => NEXMO_KEY,
+                                    'api_secret' => NEXMO_SECRET,
+                                    'from' => NEXMO_FROM,
+                                    'to' => $telephone,
+                                    'text' => 'Your verification code is: ' . $nexmocode
+                                ));
+
+                            $ch = curl_init($url);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                            curl_setopt($ch, CURLOPT_DNS_USE_GLOBAL_CACHE, false);
+                            curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 2);
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $data = json_decode($result, true);
+                    
    
             }
             ?>
@@ -315,7 +324,6 @@ $nexmocode=$_POST['sess1'];
                     var codevalue = jQuery('input[name=codebox]').val();
 
                     var sess=jQuery('input[name=sesscode]').val();
-
 
                     if(sess == codevalue)
                     {

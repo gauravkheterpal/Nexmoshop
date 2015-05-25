@@ -26,6 +26,7 @@
 ?>
 <div class="page-title">
     <h1><?php echo $this->__('Edit Account Information') ?></h1>
+    
 </div>
 <?php echo $this->getMessagesBlock()->toHtml() ?>
 <form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" autocomplete="off">
@@ -42,6 +43,13 @@
                     <input type="text" name="email" id="email" value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
                 </div>
                 
+            </li>
+            <!-- Mobile Custom Customer Attribute -->
+            <li>
+                <label for="mobile" class="required"><em>*</em><?php echo $this->__('Mobile Number') ?></label>
+                <div class="input-box">
+                    <input type="tel" autocapitalize="off" autocorrect="off" spellcheck="false" name="mobile" id="mobile" value="<?php echo $this->escapeHtml($this->getCustomer()->getMobile()) ?>" title="<?php echo $this->__('Mobile Number') ?>" class="input-text validate-custommobile" />
+                </div>
             </li>
             
         <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
@@ -95,7 +103,25 @@
     </div>
 </form>
 <script type="text/javascript">
+
 //<![CDATA[
+//-------------------------------Nexmoshop--------------------------------
+   
+
+if(Validation) {
+        Validation.addAllThese([
+        ['validate-custommobile','Enter correct mobile number',
+        function(v){
+        var timePat ="^((\+){0,1}91(\s){0,1}(\-){0,1}(\s){0,1}){0,1}9[0-9](\s){0,1}(\-){0,1}(\s){0,1}[1-9]{1}[0-9]{7}$";
+        if(v.length > 0){
+        return true;
+        }else {
+        return false;
+        }
+        }
+        ]])};
+        //-------------------------------Nexmoshop--------------------------------
+
     var dataForm = new VarienForm('form-validate', true);
     function setPasswordForm(arg){
         if(arg){
