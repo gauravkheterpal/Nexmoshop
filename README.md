@@ -13,28 +13,39 @@ Nexmoshop uses the Number Verify capabilities offered by Nexmo and integrates in
 
 ## Installation
 
-1. Nexmoshop has been submitted to Magento Connect site on 15th May and should be live shortly. Till that happens, it can be installed manually by merging the contents of this repo to your Magento installation.
+1. Nexmoshop has been submitted to Magento Connect site and should be live shortly. Till that happens, it can be installed manually by merging the contents of this repo to your Magento installation.
 
 2. Unzip the zip file (this repo for example) and then merge the `app` and `skin` folders on your Magento server. Please do NOT overwrite these folders (instead chose the merge option to add the files in the extension to your folders)
 
-3. Set your Nexmo developer API key & secret in the `Nexmoshop ▸ Magento ▸ app ▸ design ▸ frontend ▸ nexmoshop ▸ default ▸ template - register.phtml` file as follows
+3. Set your Nexmo developer API key & secret under `Admin ▸ System(menu) ▸ Configuration ▸ Nexmoshop Configuration` as shown here
 
-`define('NEXMO_KEY',    '583ea851');
-define('NEXMO_SECRET', '76f7febe');`
+![Nexmoshop Configuration](https://github.com/gauravkheterpal/Nexmoshop/blob/master/Screenshots/config.png "Nexmoshop Configuration")
 
 That's it, you are all set to experience the Nexmoshop goodness!
 
 ## Verification
 
 1. When you go to the registeration page for new customers, you'll now see an extra Mobile Number field.
+ 
+![Register](https://github.com/gauravkheterpal/Nexmoshop/blob/master/Screenshots/register.png "Register")
 
 2. Enter the verification code
 
 Once you've entered your number, the plugin uses Nexmo's Verify Number capabilities to generate a verification code. Nexmoshop then validates your verification code to determine whether the comment should be posted or not.
 
+![Verify](https://github.com/gauravkheterpal/Nexmoshop/blob/master/Screenshots/verify.png "Verify")
+
     1. If the entered verification code is valid, user is registered
     
+![Success](https://github.com/gauravkheterpal/Nexmoshop/blob/master/Screenshots/success.png "Success")
+    
     2. If the entered verification code is invalid, the registration requeest is not processsed and the user is prompted to try again & a fresh verification code is sent to the user's phone number
+    
+![Error](https://github.com/gauravkheterpal/Nexmoshop/blob/master/Screenshots/error.png "Error")
+
+Nexmoshop makes the mobile number configurable via the user's account settings as shown below
+
+![Profile](https://github.com/gauravkheterpal/Nexmoshop/blob/master/Screenshots/profile.png "Profile")
     
 ## What next?
 Nexmoshop is a demonstrator of how powerful the Nexmo platform capabilities are and how it can be integrated to enhance Magento to make it more secure. I hope the Magento Connect team approves the extension soon and I hope to enhancem Nexmoshop more powerful by adding more features.
